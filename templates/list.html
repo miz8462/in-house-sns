@@ -2,8 +2,7 @@
 <div class="alert alert-primary" role="alert">
   <h3>社内SNS</h3>
 </div>
-{% endblock header %} {% block content %}
-{% if user.is_authenticated %}
+{% endblock header %} {% block content %} {% if user.is_authenticated %}
 <div class="container">
   {% for item in object_list %}
   <div class="alert alert-success" role="alert">
@@ -27,8 +26,6 @@
     >
   </div>
   {% endfor %}
+  <a href="{% url 'logout' %}">logout</a>
 </div>
-{% else %}
-please login
-{% endif %}
-{% endblock content %}
+{% else %} please login {% endif %} {% endblock content %}
