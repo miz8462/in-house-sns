@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
 from .models import BoardModel
 
@@ -67,3 +69,10 @@ def readfunc(request, pk):
         object.readtext += ' ' + username
         object.save()
         return redirect('list')
+
+
+class BoardCreate(CreateView):
+    template_name = 'create.html'
+    model = BoardModel
+    fields = ('title', 'content', 'author', 'snsimage')
+    success_url = reverse_lazy('list')
